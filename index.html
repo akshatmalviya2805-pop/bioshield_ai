@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioShield AI — Leaf Disease Scanner & Cure Teller</title>
+  <meta name="description" content="A friendly student-built AI plant doctor that scans leaf diseases, identifies plant infections, and provides simple home and organic cures.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+  <!-- Navigation Header -->
+  <header class="navbar" role="banner">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="leaf-shield-icon">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M12 8c2 0 4 2 4 5s-2 5-4 5-4-2-4-5 2-5 4-5z" fill="currentColor" fill-opacity="0.2"/>
+            <path d="M12 8v10"/>
+            <path d="M9 13l3-2 3 2"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">
+            <span class="brand-main">BioShield</span>
+            <span class="brand-badge">AI</span>
+          </div>
+          <span class="brand-sub">Student Plant Pathology Project</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#scanner" class="nav-link active">🔍 Scanner & Cure</a>
+        <a href="#dosage-calculator" class="nav-link">🧪 Dosage Mixer</a>
+        <a href="#handbook" class="nav-link">📖 Disease Library</a>
+        <a href="#faq" class="nav-link">💬 Plant Q&A</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="action-btn" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="theme-icon dark-icon">🌙</span>
+          <span class="btn-text">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <h1 class="hero-title">
+        Leaf Disease Scanner & <span class="highlight-text">Cure Teller</span>
+      </h1>
+      <p class="hero-desc">
+        Snap or upload any plant leaf. Our student-trained AI checks for fungi, bacteria, and pests in seconds, then gives you <strong>simple kitchen remedies</strong> and <strong>safe organic cures</strong> so you can save your garden!
+      </p>
+
+      <div class="feature-pills">
+        <span class="feature-pill">🎯 Instant Disease Detection</span>
+        <span class="feature-pill">🌿 Home & Organic Cures</span>
+        <span class="feature-pill">🔊 Audio Voice Teller</span>
+        <span class="feature-pill">🧪 DIY Spray Mixer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Scanner Section -->
+  <main class="main-wrapper" id="scanner">
+    <div class="container layout-grid">
+      
+      <!-- LEFT COLUMN: Image Input & Scanning Viewport -->
+      <section class="card scanner-card" aria-label="Leaf Disease Scanner">
+        <div class="card-header">
+          <div class="header-step">
+            <span class="step-num">1</span>
+            <div>
+              <h2 class="card-title">Choose or Snap a Leaf</h2>
+              <p class="card-subtitle">Pick a quick test specimen or upload your own leaf photo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Leaf Carousel / Quick Pick -->
+        <div class="sample-picker">
+          <div class="picker-label">
+            <span>🧪 Try Sample Leaves (1-Click Test):</span>
+            <span class="picker-hint">No leaf nearby? Click any sample below!</span>
+          </div>
+          <div class="sample-chips" id="sampleChips">
+            <button class="sample-chip active" data-sample="tomato" title="Tomato Early Blight">
+              <span class="chip-avatar" style="background-image: url('assets/tomato_early_blight.jpg')"></span>
+              <span class="chip-text">
+                <strong>Tomato</strong>
+                <small>Early Blight</small>
+              </span>
+            </button>
+            <button class="sample-chip" data-sample="potato" title="Potato Late Blight">
+              <span class="chip-avatar" style="background-image: url('assets/potato_late_blight.jpg')"></span>
+              <span class="chip-text">
+                <strong>Potato</strong>
+                <small>Late Blight</small>
+              </span>
+            </button>
+            <button class="sample-chip" data-sample="rose" title="Rose Black Spot">
+              <span class="chip-avatar" style="background-image: url('assets/rose_black_spot.jpg')"></span>
+              <span class="chip-text">
+                <strong>Rose</strong>
+                <small>Black Spot</small>
+              </span>
+            </button>
+            <button class="sample-chip" data-sample="apple" title="Apple Cedar Rust">
+              <span class="chip-avatar" style="background-image: url('assets/apple_cedar_rust.jpg')"></span>
+              <span class="chip-text">
+                <strong>Apple</strong>
+                <small>Cedar Rust</small>
+              </span>
+            </button>
+            <button class="sample-chip" data-sample="corn" title="Corn Northern Blight">
+              <span class="chip-avatar" style="background-image: url('assets/corn_northern_blight.jpg')"></span>
+              <span class="chip-text">
+                <strong>Corn</strong>
+                <small>Leaf Blight</small>
+              </span>
+            </button>
+            <button class="sample-chip" data-sample="pepper" title="Healthy Pepper">
+              <span class="chip-avatar" style="background-image: url('assets/healthy_pepper_leaf.jpg')"></span>
+              <span class="chip-text">
+                <strong>Pepper</strong>
+                <small>Healthy Leaf</small>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Leaf Display Viewport -->
+        <div class="viewport-wrapper" id="viewportWrapper">
+          <div class="viewport" id="viewport">
+            <!-- Initial Canvas -->
+            <canvas id="leafCanvas" width="600" height="450" aria-label="Leaf preview and lesion overlay"></canvas>
+            
+            <!-- Live Camera Video Element (Hidden by default) -->
+            <video id="cameraVideo" autoplay playsinline muted style="display: none;"></video>
+
+            <!-- Scanning Laser Animation Bar -->
+            <div class="scan-laser" id="scanLaser" style="display: none;">
+              <div class="laser-line"></div>
+              <div class="laser-glow"></div>
+            </div>
+
+            <!-- Viewfinder Target Reticle -->
+            <div class="viewfinder-corners">
+              <div class="corner top-left"></div>
+              <div class="corner top-right"></div>
+              <div class="corner bottom-left"></div>
+              <div class="corner bottom-right"></div>
+            </div>
+
+            <!-- Overlay Badge (e.g. Scanning Status) -->
+            <div class="viewport-overlay-badge" id="viewportOverlayBadge">
+              <span class="status-indicator"></span>
+              <span id="viewportStatusText">Specimen Loaded • Ready to Scan</span>
+            </div>
+
+            <!-- Drag & Drop Overlay -->
+            <div class="drop-overlay" id="dropOverlay">
+              <div class="drop-icon">🌿</div>
+              <p>Drop your leaf image here!</p>
+            </div>
+          </div>
+
+          <!-- Lesion Highlight Switch -->
+          <div class="viewport-toolbar">
+            <label class="toggle-control" id="lesionToggleWrapper">
+              <input type="checkbox" id="toggleLesions" checked>
+              <span class="toggle-slider"></span>
+              <span class="toggle-label">Show Lesion Boxes & Spots</span>
+            </label>
+            <div class="zoom-note">
+              <span id="canvasSpecimenName">Tomato Early Blight</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Actions Toolbar -->
+        <div class="action-buttons-row">
+          <button id="scanBtn" class="btn btn-primary" title="Analyze leaf and find cures">
+            <span class="btn-icon">⚡</span>
+            <span class="btn-text"><strong>Scan Leaf Now</strong></span>
+          </button>
+
+          <label for="leafFileInput" class="btn btn-secondary file-upload-btn" title="Upload leaf image from computer or phone">
+            <span class="btn-icon">📁</span>
+            <span class="btn-text">Upload Photo</span>
+            <input type="file" id="leafFileInput" accept="image/*" class="sr-only">
+          </label>
+
+          <button id="cameraBtn" class="btn btn-outline" title="Use WebCam / Phone Camera">
+            <span class="btn-icon">📷</span>
+            <span class="btn-text" id="cameraBtnText">Live Camera</span>
+          </button>
+        </div>
+
+        <div class="student-tip">
+          <span class="tip-icon">💡</span>
+          <span class="tip-text">
+            <strong>Student Tip:</strong> For best results, place the leaf flat on a neutral background with good daylight, avoiding extreme shadows.
+          </span>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: The Cure Teller & Diagnosis Report -->
+      <section class="card cure-card" id="cureSection" aria-label="Cure Teller and Diagnosis Results">
+        <div class="card-header">
+          <div class="header-step">
+            <span class="step-num">2</span>
+            <div>
+              <h2 class="card-title">Cure Teller & Remedies</h2>
+              <p class="card-subtitle">AI diagnostic findings and actionable step-by-step treatment</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scanning State Box (Visible during scan) -->
+        <div class="scanning-state" id="scanningState" style="display: none;">
+          <div class="spinner-container">
+            <div class="plant-spinner">🌱</div>
+          </div>
+          <h3 class="scanning-title">Analyzing Plant Specimen...</h3>
+          <div class="scanning-steps">
+            <div class="scan-step-item" id="step1">
+              <span class="step-icon">⏳</span>
+              <span class="step-text">Extracting foliar contours & vein structure</span>
+            </div>
+            <div class="scan-step-item" id="step2">
+              <span class="step-icon">⏳</span>
+              <span class="step-text">Measuring chlorosis halos and necrotic spots</span>
+            </div>
+            <div class="scan-step-item" id="step3">
+              <span class="step-icon">⏳</span>
+              <span class="step-text">Matching with Plant Pathology classification database</span>
+            </div>
+            <div class="scan-step-item" id="step4">
+              <span class="step-icon">⏳</span>
+              <span class="step-text">Generating customized home & organic cure recipes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results & Diagnosis Box -->
+        <div class="diagnosis-results" id="diagnosisResults">
+          
+          <!-- Diagnosis Summary Header -->
+          <div class="result-header-box" id="resultHeaderBox">
+            <div class="result-main-info">
+              <div class="plant-leaf-tag" id="plantTypeBadge">Solanum lycopersicum (Tomato)</div>
+              <h3 class="disease-name" id="diseaseNameDisplay">Early Blight</h3>
+              <p class="pathogen-name" id="pathogenNameDisplay">Caused by fungus <em>Alternaria solani</em></p>
+            </div>
+            <div class="result-metrics">
+              <div class="metric-badge confidence-badge" id="confidenceBadge" title="Model confidence score">
+                <span class="metric-label">AI Confidence</span>
+                <span class="metric-val" id="confidenceVal">97.4%</span>
+              </div>
+              <div class="metric-badge severity-badge" id="severityBadge" title="Disease severity assessment">
+                <span class="metric-label">Severity</span>
+                <span class="metric-val" id="severityVal">Moderate</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listen to Cure Aloud Bar (Web Speech API) -->
+          <div class="audio-cure-bar">
+            <div class="audio-info">
+              <span class="audio-icon">🗣️</span>
+              <div>
+                <strong>Listen to Cure</strong>
+                <small>Have BioShield read treatment instructions out loud</small>
+              </div>
+            </div>
+            <div class="audio-controls">
+              <button id="speakCureBtn" class="audio-btn" aria-label="Listen to cure">
+                <span class="audio-btn-icon">🔊</span>
+                <span id="speakBtnText">Play Audio</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Structured Cure Accordion / Tabs -->
+          <div class="remedy-cards">
+            
+            <!-- Immediate First Aid -->
+            <div class="remedy-card priority-urgent">
+              <div class="remedy-card-header">
+                <span class="remedy-icon">🚨</span>
+                <h4>Step 1: Immediate First-Aid (Do this today)</h4>
+              </div>
+              <div class="remedy-card-body" id="immediateRemedyContent">
+                <ul>
+                  <li><strong>Prune bottom foliage:</strong> Clip off all leaves touching the soil or showing brown spots using clean pruning shears.</li>
+                  <li><strong>Sterilize tools:</strong> Wipe blades with 70% rubbing alcohol between each cut so infection does not transfer.</li>
+                  <li><strong>Discard safely:</strong> Bag infected leaves in trash. <em>Never compost diseased plant parts!</em></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Home & Kitchen Organic Remedies -->
+            <div class="remedy-card priority-organic">
+              <div class="remedy-card-header">
+                <span class="remedy-icon">🌿</span>
+                <h4>Step 2: Home & Organic Remedies (Safe & Low Cost)</h4>
+              </div>
+              <div class="remedy-card-body" id="organicRemedyContent">
+                <div class="recipe-box">
+                  <div class="recipe-title">🌿 Student Neem Oil Recipe:</div>
+                  <p class="recipe-desc" id="neemRecipeDesc">
+                    Mix <strong>2 teaspoons of pure cold-pressed Neem Oil</strong> + <strong>1/2 teaspoon of mild dish soap</strong> into <strong>1 Liter of lukewarm water</strong>. Shake well and spray both top and underside of leaves every 7 days in the early evening.
+                  </p>
+                </div>
+                <div class="recipe-box secondary-recipe">
+                  <div class="recipe-title">🧂 Baking Soda Mildew Spray:</div>
+                  <p class="recipe-desc" id="bakingSodaDesc">
+                    Mix 1 tablespoon of baking soda + 1 teaspoon vegetable oil + 1 drop dish soap in 1 gallon (3.8L) water. Creates an alkaline barrier that blocks fungal spores.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Garden Store & Eco Fungicides -->
+            <div class="remedy-card priority-treatment">
+              <div class="remedy-card-header">
+                <span class="remedy-icon">🏪</span>
+                <h4>Step 3: Garden Store Eco-Treatment</h4>
+              </div>
+              <div class="remedy-card-body" id="storeRemedyContent">
+                <ul>
+                  <li><strong>Liquid Copper Fungicide:</strong> Apply according to package directions during dry overcast weather to stop spore germination.</li>
+                  <li><strong>Bio-fungicide (Bacillus subtilis):</strong> Friendly soil bacteria spray that colonizes leaf surfaces and outcompetes harmful fungi naturally.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Long-term Prevention Rules -->
+            <div class="remedy-card priority-prevention">
+              <div class="remedy-card-header">
+                <span class="remedy-icon">🛡️</span>
+                <h4>Step 4: Prevention & Future Plant Care</h4>
+              </div>
+              <div class="remedy-card-body" id="preventionContent">
+                <ul>
+                  <li><strong>Water at the roots only:</strong> Keep leaf surfaces completely dry. Use drip watering or water early in the morning so sun dries splashes.</li>
+                  <li><strong>Mulch around stem:</strong> Add 2 inches of clean straw or wood chips to prevent soil pathogens from splashing onto lower leaves.</li>
+                  <li><strong>Crop Rotation:</strong> Do not plant tomatoes, potatoes, or eggplants in the same soil bed for 2 consecutive seasons.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Print / Share / Dosage Toolbar -->
+          <div class="result-actions-footer">
+            <button id="printReportBtn" class="btn btn-outline btn-sm">
+              <span>🖨️</span> Print Cure Sheet
+            </button>
+            <button id="jumpDosageBtn" class="btn btn-secondary btn-sm">
+              <span>🧪</span> Mix Custom Spray Dose
+            </button>
+            <button id="copyCureBtn" class="btn btn-outline btn-sm">
+              <span id="copyBtnIcon">📋</span> <span id="copyBtnText">Copy Instructions</span>
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- DIY Cure Dosage Calculator Section -->
+  <section class="section-container" id="dosage-calculator">
+    <div class="section-header">
+      <span class="section-tag">🧪 Practical Student Tool</span>
+      <h2 class="section-title">DIY Organic Spray Dosage Mixer</h2>
+      <p class="section-subtitle">
+        Never guess how much neem oil or baking soda to add! Select your spray bottle size below to get exact measurements.
+      </p>
+    </div>
+
+    <div class="dosage-card card">
+      <div class="dosage-controls">
+        <div class="control-group">
+          <label for="remedyTypeSelect">1. Select Remedy Spray:</label>
+          <select id="remedyTypeSelect" class="form-select">
+            <option value="neem">Pure Cold-Pressed Neem Oil Spray (Insects & Fungus)</option>
+            <option value="bakingSoda">Baking Soda Anti-Fungal Solution (Mildew & Black Spot)</option>
+            <option value="milk">1:9 Dilute Milk Foliar Spray (Natural Immunity Booster)</option>
+            <option value="garlic">Garlic & Chili Extract (Eco Pest Repellent)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="bottleSizeSelect">2. Select Your Sprayer Container Size:</label>
+          <select id="bottleSizeSelect" class="form-select">
+            <option value="500ml">Small Hand Mister (500 ml / 16 oz)</option>
+            <option value="1000ml" selected>Standard Garden Trigger Bottle (1 Liter / 34 oz)</option>
+            <option value="2000ml">Pressure Pump Sprayer (2 Liters / 0.5 Gal)</option>
+            <option value="3800ml">Full Backpack / Garden Sprayer (1 Gallon / 3.8 Liters)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Live Calculation Display -->
+      <div class="dosage-result-box" id="dosageResultBox">
+        <div class="dose-header">
+          <div class="dose-icon">🥣</div>
+          <div>
+            <h3 id="doseFormulaTitle">1 Liter Neem Oil Spray Recipe</h3>
+            <span class="dose-badge">Student Tested • Plant Safe</span>
+          </div>
+        </div>
+
+        <div class="ingredients-grid" id="ingredientsGrid">
+          <div class="ingredient-item">
+            <span class="ing-label">Active Ingredient (Neem Oil)</span>
+            <span class="ing-val" id="activeIngredientAmount">2.0 Teaspoons (10 ml)</span>
+          </div>
+          <div class="ingredient-item">
+            <span class="ing-label">Emulsifier (Mild Dish Soap)</span>
+            <span class="ing-val" id="emulsifierAmount">0.5 Teaspoon (2.5 ml)</span>
+          </div>
+          <div class="ingredient-item">
+            <span class="ing-label">Water Base (Warm / Luke-warm)</span>
+            <span class="ing-val" id="waterAmount">1.0 Liter (1000 ml)</span>
+          </div>
+          <div class="ingredient-item">
+            <span class="ing-label">Application Frequency</span>
+            <span class="ing-val" id="frequencyAmount">Every 5-7 days (Sunset)</span>
+          </div>
+        </div>
+
+        <div class="mixing-steps" id="mixingSteps">
+          <strong>How to mix:</strong>
+          <ol>
+            <li>Add warm water first so the natural neem oil doesn't solidify.</li>
+            <li>Add the dish soap to the oil first, then stir gently into the water until milky white.</li>
+            <li>Test spray on 1 leaf 24 hours prior to treating the whole plant.</li>
+            <li>Always spray in the late afternoon or cloudy weather to prevent sun leaf scorch.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plant Disease Handbook / Reference Guide -->
+  <section class="section-container" id="handbook">
+    <div class="section-header">
+      <span class="section-tag">📖 Student Field Guide</span>
+      <h2 class="section-title">Plant Pathology Pocket Handbook</h2>
+      <p class="section-subtitle">
+        Learn to spot common plant illnesses with our visual flashcards and reference guides.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="handbook-filters">
+      <button class="filter-btn active" data-filter="all">All Crops</button>
+      <button class="filter-btn" data-filter="tomato">Tomato</button>
+      <button class="filter-btn" data-filter="potato">Potato</button>
+      <button class="filter-btn" data-filter="rose">Rose</button>
+      <button class="filter-btn" data-filter="apple">Apple</button>
+      <button class="filter-btn" data-filter="corn">Corn</button>
+    </div>
+
+    <!-- Handbook Grid -->
+    <div class="handbook-grid" id="handbookGrid">
+      
+      <!-- Card 1 -->
+      <div class="handbook-card" data-category="tomato">
+        <div class="hb-thumb" style="background-image: url('assets/tomato_early_blight.jpg')">
+          <span class="hb-tag fungal">Fungal</span>
+        </div>
+        <div class="hb-body">
+          <span class="crop-type">Tomato</span>
+          <h3 class="hb-title">Early Blight</h3>
+          <p class="hb-latin">Alternaria solani</p>
+          <p class="hb-summary">Produces target-shaped bullseye concentric rings surrounded by yellow tissue on bottom leaves.</p>
+          <div class="hb-cure-hint">
+            <strong>Key Remedy:</strong> Prune lower canopy + Neem foliar spray.
+          </div>
+          <button class="btn btn-outline btn-xs test-specimen-btn" data-specimen="tomato">Load in Scanner</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="handbook-card" data-category="potato">
+        <div class="hb-thumb" style="background-image: url('assets/potato_late_blight.jpg')">
+          <span class="hb-tag urgent">High Risk</span>
+        </div>
+        <div class="hb-body">
+          <span class="crop-type">Potato</span>
+          <h3 class="hb-title">Late Blight</h3>
+          <p class="hb-latin">Phytophthora infestans</p>
+          <p class="hb-summary">Dark water-soaked lesions that spread rapidly in cold, damp weather. The historic cause of the Irish famine.</p>
+          <div class="hb-cure-hint">
+            <strong>Key Remedy:</strong> Copper fungicide + cull infected foliage immediately.
+          </div>
+          <button class="btn btn-outline btn-xs test-specimen-btn" data-specimen="potato">Load in Scanner</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="handbook-card" data-category="rose">
+        <div class="hb-thumb" style="background-image: url('assets/rose_black_spot.jpg')">
+          <span class="hb-tag fungal">Fungal</span>
+        </div>
+        <div class="hb-body">
+          <span class="crop-type">Rose</span>
+          <h3 class="hb-title">Black Spot Disease</h3>
+          <p class="hb-latin">Diplocarpon rosae</p>
+          <p class="hb-summary">Circular black spots with feathery edges on upper leaf surfaces, causing premature defoliation.</p>
+          <div class="hb-cure-hint">
+            <strong>Key Remedy:</strong> Baking soda spray + remove fallen ground leaves.
+          </div>
+          <button class="btn btn-outline btn-xs test-specimen-btn" data-specimen="rose">Load in Scanner</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="handbook-card" data-category="apple">
+        <div class="hb-thumb" style="background-image: url('assets/apple_cedar_rust.jpg')">
+          <span class="hb-tag fungal">Rust Fungus</span>
+        </div>
+        <div class="hb-body">
+          <span class="crop-type">Apple</span>
+          <h3 class="hb-title">Cedar Apple Rust</h3>
+          <p class="hb-latin">Gymnosporangium juniperi-virginianae</p>
+          <p class="hb-summary">Vibrant yellow-orange spots on apple leaves, requiring nearby junipers/cedars to complete its lifecycle.</p>
+          <div class="hb-cure-hint">
+            <strong>Key Remedy:</strong> Sulfur fungicide or prune juniper galls nearby.
+          </div>
+          <button class="btn btn-outline btn-xs test-specimen-btn" data-specimen="apple">Load in Scanner</button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="handbook-card" data-category="corn">
+        <div class="hb-thumb" style="background-image: url('assets/corn_northern_blight.jpg')">
+          <span class="hb-tag fungal">Foliar Blight</span>
+        </div>
+        <div class="hb-body">
+          <span class="crop-type">Corn / Maize</span>
+          <h3 class="hb-title">Northern Leaf Blight</h3>
+          <p class="hb-latin">Exserohilum turcicum</p>
+          <p class="hb-summary">Long cigar-shaped grayish-tan lesions that run parallel to the leaf veins and reduce grain yield.</p>
+          <div class="hb-cure-hint">
+            <strong>Key Remedy:</strong> Crop rotation + till debris into soil after harvest.
+          </div>
+          <button class="btn btn-outline btn-xs test-specimen-btn" data-specimen="corn">Load in Scanner</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="handbook-card" data-category="pepper">
+        <div class="hb-thumb" style="background-image: url('assets/healthy_pepper_leaf.jpg')">
+          <span class="hb-tag healthy">Healthy</span>
+        </div>
+        <div class="hb-body">
+          <span class="crop-type">Bell Pepper</span>
+          <h3 class="hb-title">Vigorous Healthy Leaf</h3>
+          <p class="hb-latin">Capsicum annuum</p>
+          <p class="hb-summary">Uniform vibrant green chlorophyll, intact stomata and cuticle, zero signs of fungal or bacterial attack.</p>
+          <div class="hb-cure-hint">
+            <strong>Key Care:</strong> Keep consistent moisture and feed organic compost.
+          </div>
+          <button class="btn btn-outline btn-xs test-specimen-btn" data-specimen="pepper">Load in Scanner</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Student Q&A Section -->
+  <section class="section-container" id="faq">
+    <div class="section-header">
+      <span class="section-tag">💬 Ask BioShield</span>
+      <h2 class="section-title">Common Plant Disease Questions</h2>
+      <p class="section-subtitle">
+        Simple, straightforward answers to the most common questions students and gardeners ask us.
+      </p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-accordion">
+        
+        <details class="faq-item" open>
+          <summary class="faq-question">
+            <span>Can I still eat fruits/vegetables from a blighted plant?</span>
+            <span class="faq-chevron">▾</span>
+          </summary>
+          <div class="faq-answer">
+            <p><strong>Yes, with care!</strong> If the fruit itself looks firm, smooth, and free of dark lesions or rot, it is generally safe to wash thoroughly, peel, cook, and consume. However, never eat fruit that has active rot, mold, or mushy spots, and never can (preserve) tomatoes from blighted vines because blight lowers acidity.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Why shouldn't I compost infected leaves?</span>
+            <span class="faq-chevron">▾</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Most home compost bins do not reach temperatures above 140°F (60°C) needed to kill fungal spores like <em>Alternaria</em> or <em>Phytophthora</em>. If you compost diseased leaves, the spores survive the winter and will re-infect your garden next spring through the compost!</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What is the golden rule of watering plants to prevent disease?</span>
+            <span class="faq-chevron">▾</span>
+          </summary>
+          <div class="faq-answer">
+            <p><strong>Water the roots, never the leaves!</strong> Fungal and bacterial spores need free-standing moisture on a leaf for 4 to 8 hours to germinate and penetrate plant cells. Water at soil level using a watering can or drip hose in the morning so any accidental splashes evaporate quickly in the daytime sun.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>How does Neem Oil work and is it safe for bees?</span>
+            <span class="faq-chevron">▾</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Neem oil comes from the seeds of the neem tree (<em>Azadirachta indica</em>). It coats fungal spores to smother them and contains azadirachtin which disrupts pest feeding. It is safe for beneficial earthworms and birds. To protect bees, always spray in the evening after bees have returned to their hives, and never spray directly onto open flowers.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>How accurate is this student AI model?</span>
+            <span class="faq-chevron">▾</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Our model was trained on thousands of curated botanical leaf images (PlantVillage open dataset). Under standard lighting with clear leaf visibility, it achieves over 95% classification accuracy on common foliar pathogens across tomato, potato, corn, apple, and rose plants.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-col brand-col">
+          <div class="footer-brand">
+            <span class="footer-logo">🌱</span>
+            <span class="footer-name">BioShield AI</span>
+          </div>
+          <p class="footer-tagline">
+            Simple, fast leaf disease scanning and organic remedy guidance for everyday gardeners and small farmers.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#scanner">Foliar Scanner</a></li>
+            <li><a href="#dosage-calculator">Dosage Calculator</a></li>
+            <li><a href="#handbook">Disease Handbook</a></li>
+            <li><a href="#faq">Plant Pathology FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Inspired By</h4>
+          <ul class="footer-links">
+            <li><a href="https://plantix.net" target="_blank" rel="noopener">Plantix (Agronomic reference)</a></li>
+            <li><a href="https://www.picturethisai.com" target="_blank" rel="noopener">PictureThis AI</a></li>
+            <li><a href="https://github.com/spMohanty/PlantVillage-Dataset" target="_blank" rel="noopener">PlantVillage Open Data</a></li>
+            <li><a href="https://www.apsnet.org" target="_blank" rel="noopener">American Phytopathological Society</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Disclaimer</h4>
+          <p class="disclaimer-text">
+            BioShield AI is created for educational and gardening guidance. For commercial agricultural interventions and quarantine diseases, consult your local agricultural extension service.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 BioShield AI • Leaf Disease Scanner & Cure Teller 💚</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon" id="toastIcon">ℹ️</span>
+    <span class="toast-message" id="toastMessage">Notification</span>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
